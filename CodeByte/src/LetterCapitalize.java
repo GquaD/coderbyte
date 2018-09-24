@@ -1,12 +1,14 @@
 //https://www.coderbyte.com/information/Letter%20Capitalize
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class LetterCapitalize {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        System.out.print(LetterCapitalize1(s.nextLine()));
+        System.out.print(LetterCapitalize2(s.nextLine()));
     }
 
     public static String LetterCapitalize1(String str){
@@ -23,10 +25,23 @@ public class LetterCapitalize {
     }
 
     public static String LetterCapitalize2(String str){
-        StringBuilder result = new StringBuilder("");
-
-       char[] chars = str.toCharArray();
-        return str;
+        StringBuilder builder = new StringBuilder();
+        String[] words = str.split(" ");
+        String temp = "";
+        for (int i = 0; i < words.length; i++) {
+            if (words[i] != null && words[i].length() != 0) {
+                char[] chars = words[i].toCharArray();
+                chars[0] = Character.toUpperCase(chars[0]);
+                temp = new String(chars);
+            } else {
+                 temp = words[i];
+            }
+            builder.append(temp + " ");
+        }
+        //Stringh result = StringUtils.capitalize(str);
+        return builder.delete(builder.length() - 1, builder.length()).toString();
 
     }
+
+
 }
